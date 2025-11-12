@@ -1,8 +1,21 @@
 const { google } = require('googleapis');
 
-// ตั้งค่า Google Sheets API client
+// ตั้งค่า Google Sheets API client จากตัวแปรแวดล้อม (.env)
+// ต้องกำหนดค่า:
+// - GOOGLE_CLIENT_EMAIL
+// - GOOGLE_PRIVATE_KEY (ใช้รูปแบบมี \n แทนบรรทัดใหม่)
+const CLIENT_EMAIL = process.env.GOOGLE_CLIENT_EMAIL;
+const PRIVATE_KEY = (process.env.GOOGLE_PRIVATE_KEY || '').replace(/\\n/g, '\n');
+
+if (!CLIENT_EMAIL || !PRIVATE_KEY) {
+  throw new Error('Missing Google credentials in .env (GOOGLE_CLIENT_EMAIL / GOOGLE_PRIVATE_KEY)');
+}
+
 const auth = new google.auth.GoogleAuth({
-  keyFile: 'credentials.json',
+  credentials: {
+    client_email: CLIENT_EMAIL,
+    private_key: PRIVATE_KEY,
+  },
   scopes: ['https://www.googleapis.com/auth/spreadsheets'],
 });
 

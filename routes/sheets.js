@@ -49,8 +49,9 @@ router.get('/test-connection', async (req, res) => {
       message: '❌ เชื่อมต่อไม่สำเร็จ',
       error: error.message,
       possibleReasons: [
-        'ตรวจสอบว่าไฟล์ credentials.json อยู่ในโฟลเดอร์โปรเจค',
-        'ตรวจสอบว่าได้แชร์ Google Sheet ให้กับ Service Account แล้ว',
+        'ตรวจว่าได้ตั้งค่า GOOGLE_CLIENT_EMAIL และ GOOGLE_PRIVATE_KEY ใน .env แล้ว',
+        'ตรวจว่า GOOGLE_PRIVATE_KEY แทนบรรทัดใหม่ด้วย \\n อย่างถูกต้อง',
+        'ตรวจสอบว่าได้แชร์ Google Sheet ให้กับ Service Account (อีเมลจาก GOOGLE_CLIENT_EMAIL) แล้ว',
         'ตรวจสอบว่า Spreadsheet ID ถูกต้อง',
         'ตรวจสอบว่าชื่อ Sheet เป็น "Sheet1" หรือแก้ไข range ให้ตรงกับชื่อ Sheet',
       ],

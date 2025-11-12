@@ -23,7 +23,21 @@
 6. ไปที่แท็บ "Keys"
 7. คลิก "Add Key" > "Create New Key"
 8. เลือก JSON และคลิก "Create"
-9. ไฟล์ JSON จะถูกดาวน์โหลด - เปลี่ยนชื่อเป็น `credentials.json` และวางไว้ในโฟลเดอร์โปรเจค
+9. ไฟล์ JSON จะถูกดาวน์โหลด (อย่า commit ไฟล์นี้ขึ้น Git!)
+
+### 2.1 ตั้งค่าผ่าน .env (แนะนำ)
+คัดลอกค่าต่อไปนี้จากไฟล์ JSON แล้วใส่ในไฟล์ `.env`
+
+```
+GOOGLE_SPREADSHEET_ID=YOUR_SPREADSHEET_ID
+GOOGLE_CLIENT_EMAIL=your_service_account_email@project.iam.gserviceaccount.com
+# วางกุญแจแบบบรรทัดเดียว โดยแทน newline ด้วย \n
+GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
+```
+
+> หมายเหตุ: ใน `.env` ห้ามใส่บรรทัดใหม่จริง ๆ ในค่า `GOOGLE_PRIVATE_KEY` ให้ใช้ `\n` แทนทุกบรรทัด
+
+หากตั้งค่า `.env` ครบแล้ว ไม่จำเป็นต้องเก็บ `credentials.json` ในโปรเจกต์อีกต่อไป
 
 ### 3. แชร์ Google Sheet ให้กับ Service Account
 
