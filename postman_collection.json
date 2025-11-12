@@ -1,0 +1,94 @@
+{
+  "info": {
+    "name": "NewProj Backend API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_postman_id": "00000000-0000-0000-0000-000000000000"
+  },
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "{{baseUrl}}/health", "host": ["{{baseUrl}}"], "path": ["health"] }
+      }
+    },
+    {
+      "name": "Test Connection (Sheets)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "{{baseUrl}}/test-connection", "host": ["{{baseUrl}}"], "path": ["test-connection"] }
+      }
+    },
+    {
+      "name": "Read Sheet",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/read?range=Sheet1!A1:D10",
+          "host": ["{{baseUrl}}"],
+          "path": ["read"],
+          "query": [{ "key": "range", "value": "Sheet1!A1:D10" }]
+        }
+      }
+    },
+    {
+      "name": "Write Sheet",
+      "request": {
+        "method": "POST",
+        "header": [{"key":"Content-Type","value":"application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"range\": \"Sheet1!A1\",\n  \"values\": [[\"Name\", \"Age\"], [\"John\", \"25\"]]\n}"
+        },
+        "url": { "raw": "{{baseUrl}}/write", "host": ["{{baseUrl}}"], "path": ["write"] }
+      }
+    },
+    {
+      "name": "Append Sheet",
+      "request": {
+        "method": "POST",
+        "header": [{"key":"Content-Type","value":"application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"range\": \"Sheet1!A1\",\n  \"values\": [[\"Jane\", \"30\"]]\n}"
+        },
+        "url": { "raw": "{{baseUrl}}/append", "host": ["{{baseUrl}}"], "path": ["append"] }
+      }
+    },
+    {
+      "name": "Typhon Ping",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "{{baseUrl}}/ai-typhon/ping", "host": ["{{baseUrl}}"], "path": ["ai-typhon","ping"] }
+      }
+    },
+    {
+      "name": "Typhon Generate",
+      "request": {
+        "method": "POST",
+        "header": [{"key":"Content-Type","value":"application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"prompt\": \"สรุป Node.js คืออะไร\",\n  \"options\": {\n    \"model\": \"default-model\",\n    \"max_tokens\": 200,\n    \"temperature\": 0.7,\n    \"path\": \"/v1/chat/completions\"\n  }\n}"
+        },
+        "url": { "raw": "{{baseUrl}}/ai-typhon/generate", "host": ["{{baseUrl}}"], "path": ["ai-typhon","generate"] }
+      }
+    },
+    {
+      "name": "Typhon Proxy",
+      "request": {
+        "method": "POST",
+        "header": [{"key":"Content-Type","value":"application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"method\": \"POST\",\n  \"path\": \"/v1/chat/completions\",\n  \"data\": {\n    \"model\": \"default-model\",\n    \"messages\": [{ \"role\": \"user\", \"content\": \"Say hello in Thai\" }]\n  }\n}"
+        },
+        "url": { "raw": "{{baseUrl}}/ai-typhon/proxy", "host": ["{{baseUrl}}"], "path": ["ai-typhon","proxy"] }
+      }
+    }
+  ]
+}
